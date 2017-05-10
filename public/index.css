@@ -1,0 +1,9 @@
+.defender-selected{
+  outline: 2px solid blue;
+}
+.attacker-selected{
+  outline: 2px solid red;
+}
+h1{
+  color: green;
+}
