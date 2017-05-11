@@ -18,11 +18,12 @@ var FormDefender = React.createClass({
   },
   render() {
     return (
-      <div>
+      <div className="col-xs-6 col-md-3">
+        <h3>Defender</h3>
         <form onSubmit={this.onButtonClick}>
-          <input type="text" ref="name" placeholder="defender pokemon"/>
-          <input type="number" ref="cp" placeholder="cp" required />
-          <button>Defender</button>
+          <input className="form-control" type="text" ref="name" placeholder="pokemon"/>
+          <input className="form-control" type="number" ref="cp" placeholder="cp" required />
+          <button className="btn btn-primary form-control">Defender</button>
         </form>
       </div>
     );

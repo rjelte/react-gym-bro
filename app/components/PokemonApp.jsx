@@ -89,23 +89,33 @@ var PokemonApp = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <h1>Gym Bro</h1>
-        <FormAttacker onNewName={this.handleNewAttacker}/>
-        <FormDefender onNewName={this.handleNewDefender}/>
-        <SorterAttacker onSort={this.handleSort} />
-        <SideAttack
-          onSelect={this.handleSelect}
-          onAttackerDelete={this.handleDeleteAttacker}
-          selectedAttacker={this.state.selectedAttacker}
-          pokeAttackers={this.state.pokeAttackers}
-          selectedDefender={this.state.selectedDefender}/>
-        <SideDefense
-          onSelect={this.handleSelect}
-          onDefenderDelete={this.handleDeleteDefender}
-          selectedDefender={this.state.selectedDefender}
-          pokeDefenders={this.state.pokeDefenders}/>
-      </div>
+      <div className="container">
+        <div>
+          <h1>Gym Bro</h1>
+        </div>
+        <div className="row">
+          <FormAttacker onNewName={this.handleNewAttacker}/>
+          <FormDefender onNewName={this.handleNewDefender}/>
+        </div>
+        <div className="row">
+          <div className="col-xs-6 col-md-9">
+            <SorterAttacker onSort={this.handleSort} />
+            <SideAttack
+              onSelect={this.handleSelect}
+              onAttackerDelete={this.handleDeleteAttacker}
+              selectedAttacker={this.state.selectedAttacker}
+              pokeAttackers={this.state.pokeAttackers}
+              selectedDefender={this.state.selectedDefender}/>
+          </div>
+          <div className="col-xs-6 col-md-3">
+            <SideDefense
+              onSelect={this.handleSelect}
+              onDefenderDelete={this.handleDeleteDefender}
+              selectedDefender={this.state.selectedDefender}
+              pokeDefenders={this.state.pokeDefenders}/>
+          </div>
+        </div>
+    </div>
     );
   }
 });

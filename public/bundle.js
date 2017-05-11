@@ -19757,14 +19757,14 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
-	var FormAttacker = __webpack_require__(169);
-	var DisplayPokemon = __webpack_require__(171);
-	var ReferencePokemon = __webpack_require__(170);
-	var FormDefender = __webpack_require__(172);
-	var SorterAttacker = __webpack_require__(176);
-	var ReferenceMoves = __webpack_require__(173);
-	var SideAttack = __webpack_require__(174);
-	var SideDefense = __webpack_require__(175);
+	var FormAttacker = __webpack_require__(160);
+	var DisplayPokemon = __webpack_require__(162);
+	var ReferencePokemon = __webpack_require__(161);
+	var FormDefender = __webpack_require__(163);
+	var SorterAttacker = __webpack_require__(164);
+	var ReferenceMoves = __webpack_require__(165);
+	var SideAttack = __webpack_require__(166);
+	var SideDefense = __webpack_require__(167);
 
 	var PokemonApp = React.createClass({
 	  displayName: 'PokemonApp',
@@ -19848,26 +19848,46 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'container' },
 	      React.createElement(
-	        'h1',
+	        'div',
 	        null,
-	        'Gym Bro'
+	        React.createElement(
+	          'h1',
+	          null,
+	          'Gym Bro'
+	        )
 	      ),
-	      React.createElement(FormAttacker, { onNewName: this.handleNewAttacker }),
-	      React.createElement(FormDefender, { onNewName: this.handleNewDefender }),
-	      React.createElement(SorterAttacker, { onSort: this.handleSort }),
-	      React.createElement(SideAttack, {
-	        onSelect: this.handleSelect,
-	        onAttackerDelete: this.handleDeleteAttacker,
-	        selectedAttacker: this.state.selectedAttacker,
-	        pokeAttackers: this.state.pokeAttackers,
-	        selectedDefender: this.state.selectedDefender }),
-	      React.createElement(SideDefense, {
-	        onSelect: this.handleSelect,
-	        onDefenderDelete: this.handleDeleteDefender,
-	        selectedDefender: this.state.selectedDefender,
-	        pokeDefenders: this.state.pokeDefenders })
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(FormAttacker, { onNewName: this.handleNewAttacker }),
+	        React.createElement(FormDefender, { onNewName: this.handleNewDefender })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'div',
+	          { className: 'col-xs-6 col-md-9' },
+	          React.createElement(SorterAttacker, { onSort: this.handleSort }),
+	          React.createElement(SideAttack, {
+	            onSelect: this.handleSelect,
+	            onAttackerDelete: this.handleDeleteAttacker,
+	            selectedAttacker: this.state.selectedAttacker,
+	            pokeAttackers: this.state.pokeAttackers,
+	            selectedDefender: this.state.selectedDefender })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'col-xs-6 col-md-3' },
+	          React.createElement(SideDefense, {
+	            onSelect: this.handleSelect,
+	            onDefenderDelete: this.handleDeleteDefender,
+	            selectedDefender: this.state.selectedDefender,
+	            pokeDefenders: this.state.pokeDefenders })
+	        )
+	      )
 	    );
 	  }
 	});
@@ -19875,23 +19895,14 @@
 	module.exports = PokemonApp;
 
 /***/ },
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var ReferencePokemon = __webpack_require__(170);
+	var ReferencePokemon = __webpack_require__(161);
 
 	var FormAttacker = React.createClass({
 	  displayName: 'FormAttacker',
@@ -19937,54 +19948,83 @@
 	    });
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'col-xs-6 col-md-9' },
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Attacker'
+	      ),
 	      React.createElement(
 	        'form',
 	        { onSubmit: this.onButtonClick },
-	        React.createElement('input', { type: 'text', ref: 'name', placeholder: 'attacker pokemon' }),
+	        React.createElement('input', { className: 'form-control', type: 'text', ref: 'name', placeholder: 'pokemon' }),
 	        React.createElement(
-	          'select',
-	          { ref: 'atk_iv', required: true },
+	          'div',
+	          { className: 'form-inLine' },
 	          React.createElement(
-	            'option',
-	            { value: '' },
-	            'Atk IV'
-	          ),
-	          arrayIV
-	        ),
-	        React.createElement(
-	          'select',
-	          { ref: 'def_iv', required: true },
-	          React.createElement(
-	            'option',
-	            { value: '' },
-	            'Def IV'
-	          ),
-	          arrayIV
-	        ),
-	        React.createElement(
-	          'select',
-	          { ref: 'hp_iv', required: true },
-	          React.createElement(
-	            'option',
-	            { value: '' },
-	            'HP IV'
-	          ),
-	          arrayIV
-	        ),
-	        React.createElement(
-	          'select',
-	          { ref: 'lvl', required: true },
-	          React.createElement(
-	            'option',
-	            { value: '' },
-	            'Level'
-	          ),
-	          arrayLVL
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-6 col-sm-3' },
+	              React.createElement(
+	                'select',
+	                { className: 'form-control', ref: 'atk_iv', required: true },
+	                React.createElement(
+	                  'option',
+	                  { value: '' },
+	                  'Atk IV'
+	                ),
+	                arrayIV
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-6 col-sm-3' },
+	              React.createElement(
+	                'select',
+	                { className: 'form-control', ref: 'def_iv', required: true },
+	                React.createElement(
+	                  'option',
+	                  { value: '' },
+	                  'Def IV'
+	                ),
+	                arrayIV
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-6 col-sm-3' },
+	              React.createElement(
+	                'select',
+	                { className: 'form-control', ref: 'hp_iv', required: true },
+	                React.createElement(
+	                  'option',
+	                  { value: '' },
+	                  'HP IV'
+	                ),
+	                arrayIV
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-6 col-sm-3' },
+	              React.createElement(
+	                'select',
+	                { className: 'form-control', ref: 'lvl', required: true },
+	                React.createElement(
+	                  'option',
+	                  { value: '' },
+	                  'Level'
+	                ),
+	                arrayLVL
+	              )
+	            )
+	          )
 	        ),
 	        React.createElement(
 	          'button',
-	          null,
+	          { className: 'btn-danger form-control' },
 	          'Attacker'
 	        )
 	      )
@@ -19995,7 +20035,7 @@
 	module.exports = FormAttacker;
 
 /***/ },
-/* 170 */
+/* 161 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22048,14 +22088,14 @@
 	module.exports = ReferencePokemon;
 
 /***/ },
-/* 171 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var ReferencePokemon = __webpack_require__(170);
+	var ReferencePokemon = __webpack_require__(161);
 
 	var DisplayPokemon = React.createClass({
 	  displayName: 'DisplayPokemon',
@@ -22091,7 +22131,7 @@
 	    types = types.map(function (t, index) {
 	      return React.createElement(
 	        'div',
-	        { key: "t" + index, className: t },
+	        { key: "t" + index, className: t + " col-xs-6" },
 	        t
 	      );
 	    });
@@ -22112,13 +22152,13 @@
 	    var side = this.isAttacker();
 	    return React.createElement(
 	      'div',
-	      { onClick: this.onSelect, className: this.isActive(this.props.id) },
+	      { onClick: this.onSelect, className: this.isActive(this.props.id) + " display-pokemon" },
 	      React.createElement(
 	        'div',
-	        { className: 'display-top' },
+	        { className: 'row' },
 	        React.createElement(
 	          'div',
-	          { className: 'cp' },
+	          { className: 'cp col-xs-3 center' },
 	          React.createElement(
 	            'span',
 	            null,
@@ -22128,12 +22168,12 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'name' },
+	          { className: 'name col-xs-6 center' },
 	          this.props.pokemon.name
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'level' },
+	          { className: 'level col-xs-3 center' },
 	          React.createElement(
 	            'span',
 	            null,
@@ -22144,10 +22184,10 @@
 	      ),
 	      React.createElement(
 	        'div',
-	        { className: 'display-mid' },
+	        { className: 'row' },
 	        React.createElement(
 	          'div',
-	          { className: 'ivs' },
+	          { className: 'ivs col-xs-2' },
 	          React.createElement(
 	            'div',
 	            { className: 'ivs-label' },
@@ -22186,12 +22226,12 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'pic' },
+	          { className: 'pic col-xs-8 center' },
 	          'img'
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'main-adjusted' },
+	          { className: 'main-adjusted col-xs-2' },
 	          React.createElement(
 	            'div',
 	            { className: 'adjusted-label' },
@@ -22206,53 +22246,49 @@
 	      ),
 	      React.createElement(
 	        'div',
-	        { className: 'display-bot' },
+	        { className: 'row' },
+	        types
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
 	        React.createElement(
 	          'div',
-	          { className: 'types' },
-	          types
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'fast-move' },
+	          { className: 'fast-move col-xs-6' },
 	          React.createElement(
-	            'div',
-	            { className: 'fast-choice' },
-	            React.createElement(
-	              'select',
-	              null,
-	              fastMoves
-	            )
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'fast-dps' },
-	            'dps'
+	            'select',
+	            null,
+	            fastMoves
 	          )
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'charge-move' },
-	          React.createElement(
-	            'div',
-	            { className: 'charge-choice' },
-	            React.createElement(
-	              'select',
-	              null,
-	              chargeMoves
-	            )
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'charge-dps' },
-	            'dps'
-	          )
-	        ),
-	        React.createElement(
-	          'button',
-	          { onClick: this.onDelete },
-	          'D'
+	          { className: 'fast-dps col-xs-4' },
+	          'dps'
 	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'div',
+	          { className: 'charge-move col-xs-6' },
+	          React.createElement(
+	            'select',
+	            null,
+	            chargeMoves
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'charge-dps col-xs-4' },
+	          'dps'
+	        )
+	      ),
+	      React.createElement(
+	        'button',
+	        { className: 'btn btn-danger', onClick: this.onDelete },
+	        'D'
 	      )
 	    );
 	  }
@@ -22261,7 +22297,7 @@
 	module.exports = DisplayPokemon;
 
 /***/ },
-/* 172 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22269,7 +22305,7 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
-	var ReferencePokemon = __webpack_require__(170);
+	var ReferencePokemon = __webpack_require__(161);
 
 	var FormDefender = React.createClass({
 	  displayName: 'FormDefender',
@@ -22288,15 +22324,20 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'col-xs-6 col-md-3' },
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Defender'
+	      ),
 	      React.createElement(
 	        'form',
 	        { onSubmit: this.onButtonClick },
-	        React.createElement('input', { type: 'text', ref: 'name', placeholder: 'defender pokemon' }),
-	        React.createElement('input', { type: 'number', ref: 'cp', placeholder: 'cp', required: true }),
+	        React.createElement('input', { className: 'form-control', type: 'text', ref: 'name', placeholder: 'pokemon' }),
+	        React.createElement('input', { className: 'form-control', type: 'number', ref: 'cp', placeholder: 'cp', required: true }),
 	        React.createElement(
 	          'button',
-	          null,
+	          { className: 'btn btn-primary form-control' },
 	          'Defender'
 	        )
 	      )
@@ -22307,7 +22348,59 @@
 	module.exports = FormDefender;
 
 /***/ },
-/* 173 */
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
+
+	var SorterAttacker = React.createClass({
+	  displayName: 'SorterAttacker',
+	  sort: function sort(e) {
+	    this.props.onSort(e.target.value);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'form',
+	        null,
+	        React.createElement(
+	          'select',
+	          { onChange: this.sort },
+	          React.createElement(
+	            'option',
+	            null,
+	            'Original'
+	          ),
+	          React.createElement(
+	            'option',
+	            null,
+	            'CP'
+	          ),
+	          React.createElement(
+	            'option',
+	            null,
+	            'Level'
+	          ),
+	          React.createElement(
+	            'option',
+	            null,
+	            'Adjusted Attack'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = SorterAttacker;
+
+/***/ },
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23401,7 +23494,7 @@
 	module.exports = ReferenceMoves;
 
 /***/ },
-/* 174 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23409,7 +23502,7 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
-	var DisplayPokemon = __webpack_require__(171);
+	var DisplayPokemon = __webpack_require__(162);
 
 	var SideAttack = React.createClass({
 	  displayName: 'SideAttack',
@@ -23436,7 +23529,7 @@
 	module.exports = SideAttack;
 
 /***/ },
-/* 175 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23444,7 +23537,7 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
-	var DisplayPokemon = __webpack_require__(171);
+	var DisplayPokemon = __webpack_require__(162);
 
 	var SideDefense = React.createClass({
 	  displayName: 'SideDefense',
@@ -23468,58 +23561,6 @@
 	});
 
 	module.exports = SideDefense;
-
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
-
-	var SorterAttacker = React.createClass({
-	  displayName: 'SorterAttacker',
-	  sort: function sort(e) {
-	    this.props.onSort(e.target.value);
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'form',
-	        null,
-	        React.createElement(
-	          'select',
-	          { onChange: this.sort },
-	          React.createElement(
-	            'option',
-	            null,
-	            'Original'
-	          ),
-	          React.createElement(
-	            'option',
-	            null,
-	            'CP'
-	          ),
-	          React.createElement(
-	            'option',
-	            null,
-	            'Level'
-	          ),
-	          React.createElement(
-	            'option',
-	            null,
-	            'Adjusted Attack'
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = SorterAttacker;
 
 /***/ }
 /******/ ]);

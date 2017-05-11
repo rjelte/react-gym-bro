@@ -1,9 +1,27 @@
+
+html {
+	height: 100%;
+}
+h1 {
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 2px 2px 2px black;
+	background: lightgreen;
+	color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 0;
+}
 .defender-selected{
   outline: 2px solid blue;
 }
 .attacker-selected{
   outline: 2px solid red;
 }
-h1{
-  color: green;
+.center {
+  text-align: center;
 }
