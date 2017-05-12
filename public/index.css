@@ -25,3 +25,29 @@ h3 {
 .center {
   text-align: center;
 }
+.display-pokemon{
+  min-width: 250px;
+}
+.types{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.NORMAL{	background-color: #ffcc99;}
+.FIRE{		background-color: #ff5c33;}
+.WATER{		background-color: #1a75ff;}
+.ELECTRIC{	background-color: #e6e600;}
+.GRASS{		background-color: #00cc00;}
+.ICE{		background-color: #99ddff;}
+.FIGHTING{	background-color: #800000;}
+.POISON{	background-color: #73264d;}
+.GROUND{	background-color: #ffaa00;}
+.FLYING{	background-color: #dab3ff;}
+.PSYCHIC{	background-color: #ff4d94;}
+.BUG{		background-color: #99ff99;}
+.ROCK{		background-color: #996633;}
+.GHOST{		background-color: #39004d;}
+.DRAGON{	background-color: #5200cc;}
+.DARK{		background-color: #331100;}
+.STEEL{		background-color: #8585ad;}
+.FAIRY{		background-color: #ffb3ff;}

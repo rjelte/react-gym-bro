@@ -2,7 +2,6 @@ var React =     require('react');
 var ReactDOM =  require('react-dom');
 
 var FormAttacker = require('./FormAttacker');
-var DisplayPokemon = require('./DisplayPokemon');
 var ReferencePokemon = require('./ReferencePokemon');
 var FormDefender = require('./FormDefender');
 var SorterAttacker = require('./SorterAttacker');
@@ -18,7 +17,7 @@ var PokemonApp = React.createClass({
       selectedAttacker: '',
       pokeDefenders: [],
       selectedDefender: '',
-    }
+    };
   },
   handleSort(type){
     var attackers = this.state.pokeAttackers;
@@ -40,15 +39,52 @@ var PokemonApp = React.createClass({
   handleNewAttacker(poke){
     ReferenceMoves.setMoves(poke);
     ReferencePokemon.setAttacker(poke);
+    let newAttackers = this.state.pokeAttackers;
+    newAttackers.push(poke);
     this.setState({
-      pokeAttackers: this.state.pokeAttackers.concat([poke])
+      pokeAttackers: []
     });
+    this.setState({
+      pokeAttackers: newAttackers
+    });
+  },
+  handleFMoveChange(move, key){
+    var index = Number(key.slice(1));
+    var side = key.slice(0, 1);
+    console.log("key" + key);
+    console.log("side" + side);
+    console.log(side === 'd');
+
+    console.log('index ' + index);
+    if (side === 'a'){
+      console.log('attacker move changed');
+      var attacker = this.state.pokeAttackers[index];
+      attacker.fMove = move;
+      console.log("fMove changed to: " + attacker.fMove.name);
+      var newAttackers = this.state.pokeAttackers;
+      newAttackers.splice(index, 1, attacker);
+      this.setState({
+        pokeAttackers: newAttackers
+      });
+    } else if (side === 'd'){
+      console.log('defender move changed');
+      var defender = this.state.pokeDefenders[index];
+      defender.fMove = move;
+      console.log("fMove changed to: " + defender.fMove.name);
+      var newDefenders = this.state.pokeDefenders;
+      newDefenders.splice(index, 1, defender);
+      this.setState({
+        pokeDefenders: newDefenders
+      });
+    }
   },
   handleNewDefender(poke){
     ReferenceMoves.setMoves(poke);
     ReferencePokemon.setDefender(poke);
+    let newDefenders = this.state.pokeDefenders;
+    newDefenders.push(poke);
     this.setState({
-      pokeDefenders: this.state.pokeDefenders.concat([poke])
+      pokeDefenders: newDefenders
     });
   },
   handleDeleteAttacker(key){
@@ -69,7 +105,7 @@ var PokemonApp = React.createClass({
   },
   handleSelect(key){
     if (key.charAt(0) === 'd'){
-      var index = Number(key.slice(1));
+      let index = Number(key.slice(1));
       this.setState({
         selectedDefender: {
           pokemon: this.state.pokeDefenders[index],
@@ -78,7 +114,7 @@ var PokemonApp = React.createClass({
       });
     }
     if (key.charAt(0) === 'a'){
-      var index = Number(key.slice(1));
+      let index = Number(key.slice(1));
       this.setState({
         selectedAttacker: {
           pokemon: this.state.pokeAttackers[index],
@@ -94,13 +130,14 @@ var PokemonApp = React.createClass({
           <h1>Gym Bro</h1>
         </div>
         <div className="row">
-          <FormAttacker onNewName={this.handleNewAttacker}/>
-          <FormDefender onNewName={this.handleNewDefender}/>
+          <FormAttacker onNewAttacker={this.handleNewAttacker}/>
+          <FormDefender onNewDefender={this.handleNewDefender}/>
         </div>
         <div className="row">
           <div className="col-xs-6 col-md-9">
             <SorterAttacker onSort={this.handleSort} />
             <SideAttack
+              onFMoveChange={this.handleFMoveChange}
               onSelect={this.handleSelect}
               onAttackerDelete={this.handleDeleteAttacker}
               selectedAttacker={this.state.selectedAttacker}
@@ -109,10 +146,12 @@ var PokemonApp = React.createClass({
           </div>
           <div className="col-xs-6 col-md-3">
             <SideDefense
+              onFMoveChange={this.handleFMoveChange}
               onSelect={this.handleSelect}
               onDefenderDelete={this.handleDeleteDefender}
               selectedDefender={this.state.selectedDefender}
-              pokeDefenders={this.state.pokeDefenders}/>
+              pokeDefenders={this.state.pokeDefenders}
+              selectedAttacker={this.state.selectedAttacker}/>
           </div>
         </div>
     </div>

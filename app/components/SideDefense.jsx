@@ -1,15 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var DisplayPokemon = require('./DisplayPokemon');
+var DisplayDefensePokemon = require('./DisplayDefensePokemon');
 
 
 var SideDefense = React.createClass({
   render(){
-    var defenders = this.props.pokeDefenders;
-    var defendersMapped = defenders.map(function(p, index){
+    let defenders = this.props.pokeDefenders;
+    let defendersMapped = defenders.map(function(p, index){
       return (
-        <DisplayPokemon
+        <DisplayDefensePokemon
+          onFMoveChange={this.props.onFMoveChange}
           key={"d" + index}
           id={"d" + index}
           pokemon={p}

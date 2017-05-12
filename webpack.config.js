@@ -11,12 +11,14 @@ module.exports = {
       FormAttacker: 'public/components/FormAttacker.jsx',
       FormDefender: 'public/components/FormDefender.jsx',
       SorterAttack: 'public/components/SorterAttack.jsx',
-      DisplayPokemon: 'public/components/DisplayPokemon.jsx',
+      DisplayAttackPokemon: 'public/components/DisplayAttackPokemon.jsx',
+      DisplayDefensePokemon: 'public/components/DisplayDefensePokemon.jsx',
       ReferencePokemon: 'public/components/ReferencePokemon.jsx',
       ReferenceMoves: 'public/components/ReferenceMoves.jsx',
       PokemonField: 'public/components/PokemonField.jsx',
       SideAttack: 'public/components/SideAttack.jsx',
-      SideDefense: 'public/components/SideDefense.jsx'
+      SideDefense: 'public/components/SideDefense.jsx',
+      svg: 'public/components/svg'
     },
     extensions: ['', '.js', '.jsx']
   },

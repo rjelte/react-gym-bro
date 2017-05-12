@@ -1,54 +1,71 @@
-var React = require('react');
+//var React = require('react');
 var ReactDOM = require('react-dom');
 var ReferencePokemon = require('./ReferencePokemon');
 
-var DisplayPokemon = React.createClass({
+import React from 'react'
+
+//<img src={"svg/" + this.props.pokemon.id + "-" + this.props.pokemon.name.toLowerCase() + ".svg"} />
+
+var DisplayDefensePokemon = React.createClass({
+  fMoveSelect(e){
+    var testID = this.props.id;
+    var move;
+    this.props.pokemon.possibleFM.forEach(function(m){
+      if (m.name === e.target.value){move = m;}
+    });
+    this.props.onFMoveChange(move, testID);
+  },
   onDelete(){
     this.props.onDelete(this.props.id);
   },
   onSelect(e){
     this.props.onSelect(this.props.id);
   },
-  isActive(value){
-    if (this.props.id.charAt(0) === 'd'){
-      return (value == this.props.selectedDefender.key)? 'defender-selected': '';
-    } else if (this.props.id.charAt(0) === 'a'){
-      return (value == this.props.selectedAttacker.key)? 'attacker-selected': '';
-    }
-  },
-  isAttacker(){
-    if (this.props.id.charAt(0) === 'a'){
-      return(['Atk.', Math.round(this.props.pokemon.adjustedAttack)]);
-    } else {
-      return (['Def.', Math.round(this.props.pokemon.adjustedDefense)]);
-    }
-  },
-  render: function() {
+  setTypes(){
     var types = [];
-    if (this.props.type2 === ''){
+    if (!this.props.pokemon.type2){
       types.push(this.props.pokemon.type1);
     } else {
       types.push(this.props.pokemon.type1);
       types.push(this.props.pokemon.type2);
     }
-    types = types.map(function(t, index){
-      return (
-        <div key={"t"+index} className={t + " col-xs-6"}>{t}</div>
-      );
+    types = types.map(function(t, index, ar){
+      if (ar.length === 2){
+        return (
+          <div key={"t"+index} className={t + " col-xs-6 center "}>{t}</div>
+        );
+      } else {
+        return (
+          <div key={"t"+index} className={t + " col-xs-12 center"}>{t}</div>
+        );
+      }
     });
+    return types;
+  },
+  setFastMoveOptions(){
     var fastMoves = this.props.pokemon.possibleFM.map(function(m, index){
       return (
         <option key={"fm"+index}>{m.name}</option>
       );
     });
+    return fastMoves;
+  },
+  setChargeMoveOptions(){
     var chargeMoves = this.props.pokemon.possibleCM.map(function(m, index){
       return (
         <option key={"cm"+index}>{m.name}</option>
       );
     });
-    var side = this.isAttacker();
+    return chargeMoves;
+  },
+  render: function() {
+    var types = this.setTypes();
+    var fastMoves = this.setFastMoveOptions();
+    var chargeMoves = this.setChargeMoveOptions();
+    var active = (this.props.id == this.props.selectedDefender.key)? 'defender-selected': '';
     return (
-      <div onClick={this.onSelect} className={this.isActive(this.props.id) + " display-pokemon"}>
+      <div className={active + " display-pokemon"}>
+        <div>{this.props.pokemon.fMove.name}</div>
         <div className="row">
           <div className="cp col-xs-3 center"><span>CP</span>{Math.round(this.props.pokemon.cp)}</div>
           <div className="name col-xs-6 center">{this.props.pokemon.name}</div>
@@ -62,11 +79,11 @@ var DisplayPokemon = React.createClass({
             <div className="hp-iv"><span>HP</span>{this.props.pokemon.hpIV}</div>
           </div>
           <div className="pic col-xs-8 center">
-            img
+            IMAGE
           </div>
           <div className="main-adjusted col-xs-2">
-            <div className="adjusted-label">{side[0]}</div>
-            <div className="adjusted-value">{side[1]}</div>
+            <div className="adjusted-label">Def.</div>
+            <div className="adjusted-value">{Math.round(this.props.pokemon.adjustedDefense)}</div>
           </div>
         </div>
         <div className="row">
@@ -74,11 +91,11 @@ var DisplayPokemon = React.createClass({
         </div>
         <div className="row">
           <div className="fast-move col-xs-6">
-            <select>
+            <select onChange={this.fMoveSelect} >
               {fastMoves}
             </select>
           </div>
-          <div className="fast-dps col-xs-4">dps</div>
+          <div className="fast-dps col-xs-4 center">dps</div>
         </div>
         <div className="row">
           <div className="charge-move col-xs-6">
@@ -86,12 +103,13 @@ var DisplayPokemon = React.createClass({
               {chargeMoves}
             </select>
           </div>
-          <div className="charge-dps col-xs-4">dps</div>
+          <div className="charge-dps col-xs-4 center">dps</div>
         </div>
         <button className="btn btn-danger" onClick={this.onDelete}>D</button>
+        <button className="btn btn-success" onClick={this.onSelect}>Select</button>
       </div>
     );
   }
 });
 
-module.exports = DisplayPokemon;
+module.exports = DisplayDefensePokemon;

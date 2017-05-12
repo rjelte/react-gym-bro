@@ -3,6 +3,7 @@ var ReactDOM =  require('react-dom');
 
 var SorterAttacker = React.createClass({
   sort(e){
+    console.log(e);
     this.props.onSort(e.target.value);
   },
   render(){

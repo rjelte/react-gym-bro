@@ -10,7 +10,7 @@ var FormDefender = React.createClass({
     var poke = ReferencePokemon.getPokemonReference(name);
     if (poke !== false){
       poke.cp = Number(this.refs.cp.value);
-      this.props.onNewName(poke);
+      this.props.onNewDefender(poke);
       this.refs.name.value = '';
     } else {
       this.refs.name.value = '';

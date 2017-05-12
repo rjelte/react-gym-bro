@@ -8,11 +8,11 @@ var FormAttacker = React.createClass({
     var name = this.refs.name.value;
     var poke = ReferencePokemon.getPokemonReference(name);
     if (poke !== false){
-      poke.attackIV = this.refs.atk_iv.value;
-      poke.defenseIV = this.refs.def_iv.value;
-      poke.hpIV = this.refs.hp_iv.value;
-      poke.level = this.refs.lvl.value;
-      this.props.onNewName(poke);
+      poke.attackIV = Number(this.refs.atk_iv.value);
+      poke.defenseIV = Number(this.refs.def_iv.value);
+      poke.hpIV = Number(this.refs.hp_iv.value);
+      poke.level = Number(this.refs.lvl.value);
+      this.props.onNewAttacker(poke);
       this.refs.name.value = '';
     } else{
       this.refs.name.value = '';

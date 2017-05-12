@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var DisplayPokemon = require('./DisplayPokemon');
+var DisplayAttackPokemon = require('./DisplayAttackPokemon');
 
 
 var SideAttack = React.createClass({
@@ -9,14 +9,14 @@ var SideAttack = React.createClass({
     var attackers = this.props.pokeAttackers;
     var attackersMapped = attackers.map(function(p, index){
       return (
-        <DisplayPokemon
+        <DisplayAttackPokemon
+          onFMoveChange={this.props.onFMoveChange}
           key={"a"+index}
           id={"a"+index}
           pokemon={p}
           onSelect={this.props.onSelect}
           selectedAttacker={this.props.selectedAttacker}
-          onDelete={this.props.onAttackerDelete}
-         />
+          onDelete={this.props.onAttackerDelete}/>
         );
     }, this);
     return (

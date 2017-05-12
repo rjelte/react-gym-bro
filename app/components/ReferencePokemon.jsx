@@ -2279,8 +2279,9 @@ var ReferencePokemon = {
     if (found){
       return pokemonReference;
       console.log(this.pokemonReference.name);
+    } else{
+          return false;
     }
-    return false;
   },
   setAttacker(poke){
     poke.cpm = Math.sqrt(poke.level) * 0.1336;
@@ -2288,6 +2289,8 @@ var ReferencePokemon = {
   	poke.adjustedDefense = (poke.defenseIV + poke.baseDefense) * poke.cpm;
   	poke.adjustedHP = (poke.hpIV + poke.baseHP) * poke.cpm;
   	poke.cp = ((poke.baseAttack + poke.attackIV) * Math.sqrt(poke.baseDefense + poke.defenseIV) * Math.sqrt(poke.baseHP + poke.hpIV) * Math.pow(poke.cpm, 2)) / 10;
+    poke.fMove = poke.possibleFM[0];
+    poke.cMove = poke.possibleCM[0];
   },
   setDefender(poke){
     poke.attackIV = 15;
@@ -2298,6 +2301,8 @@ var ReferencePokemon = {
     poke.adjustedAttack = poke.cpm * (poke.baseAttack + 15);
     poke.adjustedStamina = poke.cpm * (poke.baseHP + 15);
     poke.level = Math.pow((poke.cpm / 0.1336), 2);
+    poke.fMove = poke.possibleFM[0];
+    poke.cMove = poke.possibleCM[0];
   }
 }
 
