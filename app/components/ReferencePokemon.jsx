@@ -2272,7 +2272,7 @@ var ReferencePokemon = {
    	var pokemonReference;
    	this.pokemonReferenceArray.forEach(function(reference){
    		if (reference.name === name) {
-   			pokemonReference = reference;
+   			pokemonReference = Object.assign({}, reference);
    			found = true;
    		}
    	});
